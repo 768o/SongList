@@ -27,33 +27,47 @@
 				
 			</ul>
 		</div>
-		<audio id="audio" src="mp3/陈奕迅 - 歌·颂.mp3" controls="controls" autoplay="true"></audio>
+		<audio id="audio" src="mp3/赵偲旖 - 笑话.mp3" controls="controls" autoplay="true"></audio>
     </body>
     <script src="js/irc.js"></script>
     <script>
         var press = 1;
         var over = true;
         var settings = {
-            alltime : 180,
-            compositionStarttime : 6,
-            writingwordsStarttime : 80,
-            writemusicStarttime : 120,
+            alltime : 150,
+            compositionStarttime : 5,
+            writingwordsStarttime : 100,
+            writemusicStarttime : 130,
             list:[
                 {
-                    src: "mp3/陈奕迅 - 歌·颂.mp3",
+                    src: "mp3/赵偲旖 - 笑话.mp3",
                     start: 1,
                     end: 60,
                     irc: {
-                        "[00:16.810]":"誰にも言えない孤独を抱えたまま1人で泣いてた",
-                        "[00:28.040]":"誰にも上手に笑えない僕ら 2人出会って笑った",
-                        "[00:39.710]":"",
-                        "[00:40.410]":"真夜中過ぎに 想像の奥に",
-                        "[00:46.150]":"どうしようもない気持ちをただ押しやって",
-                        "[00:50.780]":"",
-                        "[00:51.480]":"サヨナラ 僕らはきっと生まれ変われるから",
-                        "[00:57.030]":"悲しみに手を振るんでしょう",
-                        "[01:01.190]":"そしていつか 空っぽのままの心に灯りをともすように",
-                    }
+                        "00:00.000":"笑话 - 赵偲旖"
+                ,"00:01.450":"词：赵偲旖"
+                ,"00:02.430":"曲：赵偲旖"
+                ,"00:03.400":"编曲：侯江浩"
+                ,"00:04.610":"制作人：小5"
+                ,"00:05.830":"混音：何世渝"
+                ,"00:07.040":"录音：郭秀枫"
+                ,"00:08.260":"吉他：吴海锋"
+                ,"00:09.470":"和声：小5"
+                ,"00:10.440":"录音室：无限可能 Studio"
+                ,"00:12.390":"监制：三千"
+                ,"00:13.360":"OP：千和世纪"
+                ,"00:14.580":"「版权所有未经许可请勿使用」"
+                ,"00:18.030":"不敢揣测的就别看破"
+                ,"00:21.400":"不要躲在虚伪面具背后"
+                ,"00:24.730":"别跟我 说什么 有没有 还不够"
+                ,"00:28.020":"全是你 自作自受"
+                ,"00:31.300":"别再试探这人性的脆弱"
+                ,"00:34.460":"它会比你想象的更冷漠"
+                ,"00:37.870":"拜托你 多注意 别那么 用全力"
+                ,"00:41.190":"对于我 这只是场游戏",
+                "00:43.880":"我会势如雷动 击败你们所有"
+
+}
                 },
                 {
                     src: "mp3/陈奕迅 - 歌·颂.mp3",
@@ -68,7 +82,63 @@
                 }
             ]
         }
-
+        function show(){
+            $(".ThePress1").animate({
+                opacity : 1
+            });
+            $(".ThePress2").animate({
+                opacity : 1
+            });
+            setTimeout(function(){
+                $(".ThePress1").animate({
+                    top: "92px",
+                    left: "220px",
+                });
+                $(".ThePress2").animate({
+                    left: "250px",
+                    top: "200px",
+                    width: "400px",
+                    height: "400px",
+                }); 
+                $(".ThePressIrc").animate({
+                    opacity : 1
+                });
+                $("audio").animate({
+                    opacity : 1
+                });
+                $("#audio").attr("src", settings.list[0].src)
+                initIrc(settings.list[0].irc)
+            }, 2000);
+            over = false;
+        }
+        function hide(i){
+            $(".ThePress1").animate({
+                opacity : 0
+            });
+            $(".ThePress2").animate({
+                opacity : 0
+            });
+            $("audio").animate({
+                opacity : 0
+            });
+            setTimeout(function(){
+                $(".ThePress1").animate({
+                    top: "50%",
+                    left: "50%"
+                });
+                $(".ThePress2").animate({
+                    top:"50%",
+                    left: "50%",
+                    width: "120px",
+                    height: "70px"
+                }); 
+                $(".ThePressIrc").animate({
+                    opacity : 0
+                });
+            }, 500);
+            press = i;
+            over = true;
+        }
         $(function(){
             setTimeout(function(){
                 console.log("播放");
@@ -77,34 +147,34 @@
                     $(".listTitle").addClass("musicToCenter-animation");
                     setTimeout(function(){
                         $(".composition").animate({
-                            left : ($(window).width() * (compositionStarttime / alltime)) + 60 - 23 + "px",
+                            left : ($(window).width() * (settings.compositionStarttime / settings.alltime)) + 60 - 23 + "px",
                             height: "15px",
                             width: "46px",
                             marginTop: "0px",
                             top: $(window).height() - 40 + "px",
                         });
                         $(".compositionMark").animate({
-                            left : ($(window).width() * (compositionStarttime / alltime)) - 2 + "px"
+                            left : ($(window).width() * (settings.compositionStarttime / settings.alltime)) - 2 + "px"
                         });
                         $(".writingwords").animate({
-                            left : ($(window).width() * (writingwordsStarttime / alltime)) + 60 - 23 + "px",
+                            left : ($(window).width() * (settings.writingwordsStarttime / settings.alltime)) + 60 - 23 + "px",
                             height: "15px",
                             width: "46px",
                             marginTop: "0px",
                             top: $(window).height() - 40 + "px",
                         });
                         $(".writingwordsMark").animate({
-                            left : ($(window).width() * (writingwordsStarttime / alltime)) - 2 + "px"
+                            left : ($(window).width() * (settings.writingwordsStarttime / settings.alltime)) - 2 + "px"
                         });
                         $(".writemusic").animate({
-                            left : ($(window).width() * (writemusicStarttime / alltime)) + 60 - 23 + "px",
+                            left : ($(window).width() * (settings.writemusicStarttime / settings.alltime)) + 60 - 23 + "px",
                             height: "15px",
                             width: "46px",
                             marginTop: "0px",
                             top: $(window).height() - 40 + "px",
                         });
                         $(".writemusicMark").animate({
-                            left : ($(window).width() * (writemusicStarttime / alltime)) - 2 + "px"
+                            left : ($(window).width() * (settings.writemusicStarttime / settings.alltime)) - 2 + "px"
                         });
                     }, 700);
                 }, 500);
@@ -127,140 +197,22 @@
                             othis.removeClass(DISABLED);
                         }
                         if(press == 1 && n >= settings.compositionStarttime * 100.0 / settings.alltime && over){
-                            $(".ThePress1").animate({
-                                opacity : 1
-                            });
-                            $(".ThePress2").animate({
-                                opacity : 1
-                            });
-                            setTimeout(function(){
-                                $(".ThePress1").animate({
-                                    top: "92px",
-                                    left: "220px"
-                                });
-                                $(".ThePress2").animate({
-                                    left: "100px"
-                                }); 
-                                $(".ThePressIrc").animate({
-                                    opacity : 1
-                                });
-                                $("#audio").attr("src", settings.list[0].src)
-                                initIrc(settings.list[0].irc)
-                            }, 2000);
-                            over = false;
+                            show();
                         }
                         if(press == 1 && n >= (settings.writingwordsStarttime * 100.0 / settings.alltime) - (4.0/60.0)*100 && !over){
-                            $(".ThePress1").animate({
-                                opacity : 0
-                            });
-                            $(".ThePress2").animate({
-                                opacity : 0
-                            });
-                            setTimeout(function(){
-                                $(".ThePress1").animate({
-                                    top: "50%",
-                                    left: "50%"
-                                });
-                                $(".ThePress2").animate({
-                                    top:"50%",
-                                    left: "50%"
-                                }); 
-                                $(".ThePressIrc").animate({
-                                    opacity : 0
-                                });
-                            }, 500);
-                            press = 2;
-                            over = true;
+                            hide(2)
                         }
                         if(press == 2 && n >= settings.writingwordsStarttime * 100.0 / settings.alltime && over){
-                            $(".ThePress1").animate({
-                                opacity : 1
-                            });
-                            $(".ThePress2").animate({
-                                opacity : 1
-                            });
-                            setTimeout(function(){
-                                $(".ThePress1").animate({
-                                    top: "92px",
-                                    left: "220px"
-                                });
-                                $(".ThePress2").animate({
-                                    left: "100px"
-                                }); 
-                                $(".ThePressIrc").animate({
-                                    opacity : 1
-                                });
-                            }, 2000);
-                            over = false;
+                            show();
                         }
                         if(press == 2 && n >= (settings.writemusicStarttime * 100.0 / settings.alltime) - (4.0/60.0)*100 && !over){
-                            $(".ThePress1").animate({
-                                opacity : 0
-                            });
-                            $(".ThePress2").animate({
-                                opacity : 0
-                            });
-                            setTimeout(function(){
-                                $(".ThePress1").animate({
-                                    top: "50%",
-                                    left: "50%"
-                                });
-                                $(".ThePress2").animate({
-                                    top:"50%",
-                                    left: "50%"
-                                }); 
-                                $(".ThePressIrc").animate({
-                                    opacity : 0
-                                });
-                            }, 500);
-                            press = 3;
-                            over = true;
+                            hide(3)
                         }
                         if(press == 3 && n >= settings.writemusicStarttime * 100.0 / settings.alltime && over){
-                            $(".ThePress1").animate({
-                                opacity : 1,
-                            });
-                            $(".ThePress2").animate({
-                                opacity : 1
-                            });
-                            setTimeout(function(){
-                                $(".ThePress1").animate({
-                                    top: "92px",
-                                    left: "220px"
-                                });
-                                $(".ThePress2").animate({
-                                    left: "100px"
-                                }); 
-                                $(".ThePressIrc").animate({
-                                    opacity : 1
-                                });
-                            }, 2000);
-                            over = false;
+                            show();
                         }
                         if(press == 3 && n >= (settings.alltime * 100.0 / settings.alltime) - (4.0/60.0)*100 && !over){
-                            $(".ThePress1").removeClass("press-animation")
-                            $(".ThePress2").removeClass("press-animation")
-                            $(".ThePress1").animate({
-                                opacity : 0
-                            });
-                            $(".ThePress2").animate({
-                                opacity : 0
-                            });
-                            setTimeout(function(){
-                                $(".ThePress1").animate({
-                                    top: "50%",
-                                    left: "50%"
-                                });
-                                $(".ThePress2").animate({
-                                    top:"50%",
-                                    left: "50%"
-                                }); 
-                                $(".ThePressIrc").animate({
-                                    opacity : 0
-                                });
-                            }, 500);
-                            press = 4;
-                            over = true;
+                            hide(4);
                         }
                         element.progress('demo', n+'%');
                     }, 50);

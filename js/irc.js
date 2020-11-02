@@ -14,11 +14,14 @@ function initIrc(ircjson){
     i = 0;
     lrcTime = [];
     ul = $("#lrclist")[0];
-    ul.empty();
+    ul.innerHTML = "";
     $.each(lrcJSON, function(key, value) {//遍历lrc
-        lrcTime[i++] = parseFloat(key.substr(1,3)) * 60 + parseFloat(key.substring(4,10));//00:00.000转化为00.000格式
+        console.log(parseFloat(key.substr(1,3)) * 60)
+        console.log(parseFloat(key.substring(3,10)))
+        lrcTime[i++] = parseFloat(key.substr(1,3)) * 60 + parseFloat(key.substring(3,10));//00:00.000转化为00.000格式
         ul.innerHTML += "<li><p>"+lrcJSON[key]+"</p></li>";//ul里填充歌词
     });
+    console.log(lrcTime)
     lrcTime[lrcTime.length] = lrcTime[lrcTime.length-1] + 3;//如不另加一个结束时间，到最后歌词滚动不到最后一句
     var $li = $("#lrclist>li");//获取所有li
     audio.ontimeupdate = function() {//audio时间改变事件
