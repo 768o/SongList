@@ -1,0 +1,221 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/index.css" /> 
+        <script src="js/jquery-2.2.2.min.js"></script>
+        <script src="js/layui/layui.js"></script>
+    </head>
+    <body>
+        <div class="fixedBottom">
+            <div class="layui-progress" lay-filter="demo">
+                <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
+            </div>
+            <div class="site-demo-button" style="display: none;">
+                <button class="layui-btn site-demo-active" data-type="loading">loading</button>
+            </div>
+        </div>
+        <div class="center prize"></div>
+        <div class="center composition listTitle"></div>
+        <div class="center writingwords listTitle"></div>
+        <div class="center writemusic listTitle"></div>
+        <div class="mark compositionMark"></div>
+        <div class="mark writingwordsMark"></div>
+        <div class="mark writemusicMark"></div>
+        <div class="center ThePress1"></div>
+        <div class="center ThePress2"></div>
+    </body>
+    <script>
+        alltime = 30;
+        compositionStarttime = 6;
+        writingwordsStarttime = 15;
+        writemusicStarttime = 25;
+        var press = 1;
+        var over = true;
+        $(function(){
+            setTimeout(function(){
+                console.log("播放");
+                $(".prize").addClass("prize-animation");
+                setTimeout(function(){
+                    $(".listTitle").addClass("musicToCenter-animation");
+                    setTimeout(function(){
+                        $(".composition").animate({
+                            left : ($(window).width() * (compositionStarttime / alltime)) + 60 - 23 + "px",
+                            height: "15px",
+                            width: "46px",
+                            marginTop: "0px",
+                            top: $(window).height() - 40 + "px",
+                        });
+                        $(".compositionMark").animate({
+                            left : ($(window).width() * (compositionStarttime / alltime)) - 2 + "px"
+                        });
+                        $(".writingwords").animate({
+                            left : ($(window).width() * (writingwordsStarttime / alltime)) + 60 - 23 + "px",
+                            height: "15px",
+                            width: "46px",
+                            marginTop: "0px",
+                            top: $(window).height() - 40 + "px",
+                        });
+                        $(".writingwordsMark").animate({
+                            left : ($(window).width() * (writingwordsStarttime / alltime)) - 2 + "px"
+                        });
+                        $(".writemusic").animate({
+                            left : ($(window).width() * (writemusicStarttime / alltime)) + 60 - 23 + "px",
+                            height: "15px",
+                            width: "46px",
+                            marginTop: "0px",
+                            top: $(window).height() - 40 + "px",
+                        });
+                        $(".writemusicMark").animate({
+                            left : ($(window).width() * (writemusicStarttime / alltime)) - 2 + "px"
+                        });
+                    }, 700);
+                }, 500);
+            }, 1000);
+        })
+        layui.use('element', function(){
+            var $ = layui.jquery
+                ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+            //触发事件
+            var active = {
+                loading: function(othis){
+                    var DISABLED = 'layui-btn-disabled';
+                    if(othis.hasClass(DISABLED)) return;
+                    //模拟loading
+                    var n = 0, timer = setInterval(function(){
+                        n = n + 5.0/alltime;
+                        if(n > 100){
+                            n = 100;
+                            clearInterval(timer);
+                            othis.removeClass(DISABLED);
+                        }
+                        if(press == 1 && n >= compositionStarttime * 100.0 / alltime && over){
+                            $(".ThePress1").animate({
+                                opacity : 1
+                            });
+                            $(".ThePress2").animate({
+                                opacity : 1
+                            });
+                            setTimeout(function(){
+                                $(".ThePress1").animate({
+                                    top: "92px",
+                                    left: "220px"
+                                });
+                                $(".ThePress2").animate({
+                                    left: "100px"
+                                }); 
+                            }, 2000);
+                            over = false;
+                        }
+                        if(press == 1 && n >= (writingwordsStarttime * 100.0 / alltime) - (4.0/60.0)*100 && !over){
+                            $(".ThePress1").animate({
+                                opacity : 0
+                            });
+                            $(".ThePress2").animate({
+                                opacity : 0
+                            });
+                            setTimeout(function(){
+                                $(".ThePress1").animate({
+                                    top: "50%",
+                                    left: "50%"
+                                });
+                                $(".ThePress2").animate({
+                                    top:"50%",
+                                    left: "50%"
+                                }); 
+                            }, 500);
+                            press = 2;
+                            over = true;
+                        }
+                        if(press == 2 && n >= writingwordsStarttime * 100.0 / alltime && over){
+                            $(".ThePress1").animate({
+                                opacity : 1
+                            });
+                            $(".ThePress2").animate({
+                                opacity : 1
+                            });
+                            setTimeout(function(){
+                                $(".ThePress1").animate({
+                                    top: "92px",
+                                    left: "220px"
+                                });
+                                $(".ThePress2").animate({
+                                    left: "100px"
+                                }); 
+                            }, 2000);
+                            over = false;
+                        }
+                        if(press == 2 && n >= (writemusicStarttime * 100.0 / alltime) - (4.0/60.0)*100 && !over){
+                            $(".ThePress1").animate({
+                                opacity : 0
+                            });
+                            $(".ThePress2").animate({
+                                opacity : 0
+                            });
+                            setTimeout(function(){
+                                $(".ThePress1").animate({
+                                    top: "50%",
+                                    left: "50%"
+                                });
+                                $(".ThePress2").animate({
+                                    top:"50%",
+                                    left: "50%"
+                                }); 
+                            }, 500);
+                            press = 3;
+                            over = true;
+                        }
+                        if(press == 3 && n >= writemusicStarttime * 100.0 / alltime && over){
+                            $(".ThePress1").animate({
+                                opacity : 1,
+                            });
+                            $(".ThePress2").animate({
+                                opacity : 1
+                            });
+                            setTimeout(function(){
+                                $(".ThePress1").animate({
+                                    top: "92px",
+                                    left: "220px"
+                                });
+                                $(".ThePress2").animate({
+                                    left: "100px"
+                                }); 
+                            }, 2000);
+                            over = false;
+                        }
+                        if(press == 3 && n >= (alltime * 100.0 / alltime) - (4.0/60.0)*100 && !over){
+                            $(".ThePress1").removeClass("press-animation")
+                            $(".ThePress2").removeClass("press-animation")
+                            $(".ThePress1").animate({
+                                opacity : 0
+                            });
+                            $(".ThePress2").animate({
+                                opacity : 0
+                            });
+                            setTimeout(function(){
+                                $(".ThePress1").animate({
+                                    top: "50%",
+                                    left: "50%"
+                                });
+                                $(".ThePress2").animate({
+                                    top:"50%",
+                                    left: "50%"
+                                }); 
+                            }, 500);
+                            press = 4;
+                            over = true;
+                        }
+                        element.progress('demo', n+'%');
+                    }, 50);
+                    othis.addClass(DISABLED);
+                }
+            };
+            
+            $('.site-demo-active').on('click', function(){
+                var othis = $(this), type = $(this).data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+            setTimeout(function(){
+                $('.site-demo-active').click();
+            },50);
+        });
+    </script>
+</html>

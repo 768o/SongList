@@ -1,0 +1,124 @@
+html {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.prize{
+    background-color: aqua;
+    width: 200px;
+    height: 100px;
+    margin: -50px 0 0 -100px;
+}
+.listTitle{
+    opacity: 0;
+}
+.composition{
+    background-color: aqua;
+    width: 120px;
+    height: 50px;
+    margin: -80px 0 0 -30px;
+}
+.writingwords{
+    background-color: aqua;
+    width: 120px;
+    height: 50px;
+    margin: -25px 0 0 -90px;
+}
+.writemusic{
+    background-color: aqua;
+    width: 120px;
+    height: 50px;
+    margin: 30px 0 0 -30px;
+}
+.prize-animation{
+    animation: moveToLeftTop 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: swing;
+}
+.musicToCenter-animation{
+    animation: musicToCenter 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: swing;
+}
+
+@keyframes musicToCenter{
+    0% {}
+    100% {
+        margin-left: -60px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveToLeftTop
+{
+    0% {}
+    100% {
+        left: 0px;
+        top: 0px;
+        margin: 5px 0 0 5px;
+        width: 150px;
+        height: 50px;
+    }
+}
+
+.fixedBottom{
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+}
+
+.mark {
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    background-color: thistle;
+    left: 2px;
+    bottom: 15px;
+}
+
+.layui-progress{
+    background-color: teal;
+    height: 5px;
+}
+.layui-progress-bar{
+    background-color: white;
+    height: 5px;
+}
+
+.ThePress1{
+    background-color: thistle;
+    width: 120px;
+    height: 35px;
+    margin-top: -80px;
+    margin-left: -60px;
+    opacity: 0;
+}
+.ThePress2{
+    background-color: thistle;
+    width: 120px;
+    height: 70px;
+    margin-top: -40px;
+    margin-left: -60px;
+    opacity: 0;
+}
+.press-animation{
+    animation: pressAnimation 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: swing;
+}
+@keyframes pressAnimation
+{
+    0% {}
+    100% {
+        opacity: 1;
+    }
+}
