@@ -110,6 +110,14 @@ body{
     margin-left: -60px;
     opacity: 0;
 }
+.ThePressIrc{
+    background-color: thistle;
+    width: 200px;
+    height: 500px;
+    margin-top: -250px;
+    margin-left: -50px;
+    opacity: 0;
+}
 .press-animation{
     animation: pressAnimation 1s;
     animation-fill-mode: forwards;
@@ -121,4 +129,31 @@ body{
     100% {
         opacity: 1;
     }
+}
+
+ul{
+    transition-duration: 600ms;
+}
+ul, li{
+    list-style:none;
+    padding: 0;
+    margin: 0;
+}
+li.on{
+    color: red;
+}
+p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 16px;
+    line-height: 16px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+audio{
+    margin-top: 10px;
 }
