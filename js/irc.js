@@ -16,8 +16,8 @@ function initIrc(ircjson){
     ul = $("#lrclist")[0];
     ul.innerHTML = "";
     $.each(lrcJSON, function(key, value) {//遍历lrc
-        console.log(parseFloat(key.substr(1,3)) * 60)
-        console.log(parseFloat(key.substring(3,10)))
+        //console.log(parseFloat(key.substr(1,3)) * 60)
+        //console.log(parseFloat(key.substring(3,10)))
         lrcTime[i++] = parseFloat(key.substr(1,3)) * 60 + parseFloat(key.substring(3,10));//00:00.000转化为00.000格式
         ul.innerHTML += "<li><p>"+lrcJSON[key]+"</p></li>";//ul里填充歌词
     });
@@ -32,7 +32,7 @@ function initIrc(ircjson){
                 ppxx = 250-(currentLine*32);
                 ul.style.transform = "translateY("+ppxx+"px)";
                 $li.get(currentLine-1).className="";
-                console.log("on"+currentLine);
+                //console.log("on"+currentLine);
                 $li.get(currentLine).className="on";
                 break;
             }
@@ -40,7 +40,7 @@ function initIrc(ircjson){
     };
     audio.onseeked = function() {//audio进度更改后事件
         currentTime = audio.currentTime;
-        console.log("  off"+currentLine);
+        //console.log("  off"+currentLine);
         $li.get(currentLine).className="";
         for (k=0, len=lrcTime.length; k<len; k++){
             if (currentTime<lrcTime[k+1] && currentTime<lrcTime[k]){

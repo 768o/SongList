@@ -1,13 +1,14 @@
 var settings = {
-	alltime : 150,
-	compositionStarttime : 5,
-	writingwordsStarttime : 50,
-	writemusicStarttime : 130,
+	alltime : 60.0,
+	compositionStarttime : 5.0,
+	writingwordsStarttime : 20.0,
+	writemusicStarttime : 40.0,
 	list:[
 		{
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 15,
 			end: 60,
+			rhythm:1000,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
@@ -37,6 +38,7 @@ var settings = {
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 12,
 			end: 92,
+			rhythm:500,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
@@ -66,6 +68,7 @@ var settings = {
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 5,
 			end: 60,
+			rhythm:100,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
