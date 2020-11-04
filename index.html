@@ -11,8 +11,9 @@
         </style>
     </head>
     <body>
+        <!-- 飘落代码 -->
         <canvas id="sakura"></canvas>
-<!-- sakura shader -->
+        <!-- sakura shader -->
         <script id="sakura_point_vsh" type="x-shader/x_vertex">
             uniform mat4 uProjection;
             uniform mat4 uModelview;
@@ -150,7 +151,7 @@
                 gl_FragColor = vec4(col * 0.5, alpha);
             }
         </script>
-<!-- effects -->
+        <!-- effects -->
         <script id="fx_common_vsh" type="x-shader/x_vertex">
             uniform vec3 uResolution;
             attribute vec2 aPosition;
@@ -212,7 +213,7 @@
                 gl_FragColor = col / 5.0;
             }
         </script>
-<!-- effect fragment shader template -->
+        <!-- effect fragment shader template -->
         <script id="fx_common_fsh" type="x-shader/x_fragment">
             #ifdef GL_ES
             //precision mediump float;
@@ -260,8 +261,6 @@
             }
         </script>
         <!-- 飘落代码 -->
-
-
         <div class="fixedBottom">
             <div class="layui-progress" lay-filter="demo">
                 <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
@@ -278,8 +277,8 @@
         <div class="mark writingwordsMark"></div>
         <div class="mark writemusicMark"></div>
         <div class="center ThePress1"></div>
-        <div class="center ThePress2"></div>
-        <div class="center ThePressIrc">
+        <div class="wrap center ThePress2"></div>
+        <div class="wrap center ThePressIrc">
 			<ul id="lrclist" style="transform: translateY(250px);"><!-- 保证歌词在正中间 -->
 				
 			</ul>
