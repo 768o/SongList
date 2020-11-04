@@ -303,8 +303,8 @@
             }
             myAudio.addEventListener("timeupdate",audioFun);
         }
-        var listTitleTimer;
         function show(){
+            console.log("show")
             over = false;
             if(press == 1){
                 t = settings.writingwordsStarttime;
@@ -338,25 +338,32 @@
                 initIrc(settings.list[press-1].irc);
                 var myAudio = $("audio")[0];
                 myAudio.play();
+                console.log("跳动")
+                var listTitleTimer = setInterval(function(){
+                    var minTop = $(window).height() - 40;
+                    if(over){
+                        console.log("stop")
+                        clearInterval(listTitleTimer);
+                        $(".listTitle").animate({
+                            top : minTop + "px"
+                        }, 1000)
+                    }else{
+                        console.log("上创下跳")
+                        var i = Math.ceil(Math.random()*50);
+                        var j = Math.ceil(Math.random()*50);
+                        var k = Math.ceil(Math.random()*50);
+                        $(".composition").animate({
+                            top : minTop - i + "px"
+                        }, settings.list[press-1].rhythm);
+                        $(".writingwords").animate({
+                            top : minTop - j + "px"
+                        }, settings.list[press-1].rhythm);
+                        $(".writemusic").animate({
+                            top : minTop - k + "px"
+                        }, settings.list[press-1].rhythm);
+                    }
+                }, settings.list[press-1].rhythm);
             }, 2000);
-            console.log("跳动")
-            listTitleTimer = setInterval(function(){
-                console.log("上创下跳")
-                var minTop = $(window).height() - 40;
-                var i = Math.ceil(Math.random()*50);
-                var j = Math.ceil(Math.random()*50);
-                var k = Math.ceil(Math.random()*50);
-                $(".composition").animate({
-                    top : minTop - i + "px"
-                });
-                $(".writingwords").animate({
-                    top : minTop - j + "px"
-                });
-                $(".writemusic").animate({
-                    top : minTop - k + "px"
-                });
-            }, 100);
-            console.log(listTitleTimer)
         }
         function hide(){
             over = true;
@@ -379,7 +386,6 @@
                 });
             }, 500);
             ++press;
-            clearInterval(listTitleTimer);
         }
         $(function(){
             setTimeout(function(){
@@ -442,7 +448,7 @@
                         if(press < 4 && n >= t * 100.0 / settings.alltime && over){
                             show();
                         }
-                        if(press < 4 && n >= (t * 100.0 / settings.alltime) - (2.0/60.0)*100 && !over){
+                        if(press < 4 && n >= ((t-2) * 100.0 / settings.alltime) && !over){
                             hide()
                         }
                         element.progress('demo', n+'%');

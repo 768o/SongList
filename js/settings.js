@@ -8,7 +8,7 @@ var settings = {
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 15,
 			end: 60,
-			rhythm:1000,
+			rhythm: 1000,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
@@ -38,7 +38,7 @@ var settings = {
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 12,
 			end: 92,
-			rhythm:500,
+			rhythm: 200,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
@@ -68,7 +68,7 @@ var settings = {
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 5,
 			end: 60,
-			rhythm:100,
+			rhythm: 400,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
