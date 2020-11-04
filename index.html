@@ -27,66 +27,28 @@
 				
 			</ul>
 		</div>
-		<audio id="audio" src="mp3/赵偲旖 - 笑话.mp3" controls="controls" autoplay="true"></audio>
+		<audio id="audio" src="" controls="controls" autoplay="true"></audio>
     </body>
     <script src="js/irc.js"></script>
+    <script src="js/settings.js"></script>
     <script>
         var press = 1;
         var over = true;
-        var settings = {
-            alltime : 150,
-            compositionStarttime : 5,
-            writingwordsStarttime : 100,
-            writemusicStarttime : 130,
-            list:[
-                {
-                    src: "mp3/赵偲旖 - 笑话.mp3",
-                    start: 1,
-                    end: 60,
-                    irc: {
-                        "00:00.000":"笑话 - 赵偲旖"
-                ,"00:01.450":"词：赵偲旖"
-                ,"00:02.430":"曲：赵偲旖"
-                ,"00:03.400":"编曲：侯江浩"
-                ,"00:04.610":"制作人：小5"
-                ,"00:05.830":"混音：何世渝"
-                ,"00:07.040":"录音：郭秀枫"
-                ,"00:08.260":"吉他：吴海锋"
-                ,"00:09.470":"和声：小5"
-                ,"00:10.440":"录音室：无限可能 Studio"
-                ,"00:12.390":"监制：三千"
-                ,"00:13.360":"OP：千和世纪"
-                ,"00:14.580":"「版权所有未经许可请勿使用」"
-                ,"00:18.030":"不敢揣测的就别看破"
-                ,"00:21.400":"不要躲在虚伪面具背后"
-                ,"00:24.730":"别跟我 说什么 有没有 还不够"
-                ,"00:28.020":"全是你 自作自受"
-                ,"00:31.300":"别再试探这人性的脆弱"
-                ,"00:34.460":"它会比你想象的更冷漠"
-                ,"00:37.870":"拜托你 多注意 别那么 用全力"
-                ,"00:41.190":"对于我 这只是场游戏",
-                "00:43.880":"我会势如雷动 击败你们所有"
-
-}
-                },
-                {
-                    src: "mp3/陈奕迅 - 歌·颂.mp3",
-                    start: 1,
-                    end: 60,
-                    irc: ""
-                },
-                {
-                    src: "mp3/陈奕迅 - 歌·颂.mp3",
-                    start: 1,
-                    end: 60
+        var t = settings.compositionStarttime;
+        function setCurEndTimeAndPlay(startTime, endTime) {
+            var myAudio = $("audio")[0];
+            myAudio.currentTime = startTime;
+            var audioFun = function () {
+                myAudio.play();
+                if (myAudio.currentTime >= endTime) {
+                    myAudio.pause();
+                    myAudio.removeEventListener("timeupdate",audioFun);
                 }
-            ]
+            }
+            myAudio.addEventListener("timeupdate",audioFun);
         }
         function show(){
-            $(".ThePress1").animate({
-                opacity : 1
-            });
-            $(".ThePress2").animate({
+            $(".ThePress1,.ThePress2").animate({
                 opacity : 1
             });
             setTimeout(function(){
@@ -106,19 +68,16 @@
                 $("audio").animate({
                     opacity : 1
                 });
-                $("#audio").attr("src", settings.list[0].src)
-                initIrc(settings.list[0].irc)
+                $("#audio").attr("src", settings.list[press-1].src);
+                setCurEndTimeAndPlay(settings.list[press-1].start, settings.list[press-1].end);
+                initIrc(settings.list[press-1].irc);
+                var myAudio = $("audio")[0];
+                myAudio.play();
             }, 2000);
             over = false;
         }
-        function hide(i){
-            $(".ThePress1").animate({
-                opacity : 0
-            });
-            $(".ThePress2").animate({
-                opacity : 0
-            });
-            $("audio").animate({
+        function hide(){
+            $(".ThePress1,.ThePress2,audio").animate({
                 opacity : 0
             });
             setTimeout(function(){
@@ -136,7 +95,7 @@
                     opacity : 0
                 });
             }, 500);
-            press = i;
+            ++press;
             over = true;
         }
         $(function(){
@@ -178,7 +137,7 @@
                         });
                     }, 700);
                 }, 500);
-            }, 1000);
+            }, 2000);
         })
         layui.use('element', function(){
             var $ = layui.jquery
@@ -196,23 +155,19 @@
                             clearInterval(timer);
                             othis.removeClass(DISABLED);
                         }
-                        if(press == 1 && n >= settings.compositionStarttime * 100.0 / settings.alltime && over){
+
+                        if(press < 4 && n >= t * 100.0 / settings.alltime && over){
                             show();
+                            if(press == 1){
+                                t = settings.writingwordsStarttime;
+                            }else if(press == 2){
+                                t = settings.writemusicStarttime;    
+                            }else if(press == 3){
+                                t = settings.alltime;    
+                            }
                         }
-                        if(press == 1 && n >= (settings.writingwordsStarttime * 100.0 / settings.alltime) - (4.0/60.0)*100 && !over){
-                            hide(2)
-                        }
-                        if(press == 2 && n >= settings.writingwordsStarttime * 100.0 / settings.alltime && over){
-                            show();
-                        }
-                        if(press == 2 && n >= (settings.writemusicStarttime * 100.0 / settings.alltime) - (4.0/60.0)*100 && !over){
-                            hide(3)
-                        }
-                        if(press == 3 && n >= settings.writemusicStarttime * 100.0 / settings.alltime && over){
-                            show();
-                        }
-                        if(press == 3 && n >= (settings.alltime * 100.0 / settings.alltime) - (4.0/60.0)*100 && !over){
-                            hide(4);
+                        if(press < 4 && n >= (t * 100.0 / settings.alltime) - (1.0/60.0)*100 && !over){
+                            hide()
                         }
                         element.progress('demo', n+'%');
                     }, 50);
