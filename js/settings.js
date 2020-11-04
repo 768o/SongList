@@ -1,8 +1,8 @@
 var settings = {
-	alltime : 60.0,
+	alltime : 100.0,
 	compositionStarttime : 5.0,
-	writingwordsStarttime : 20.0,
-	writemusicStarttime : 40.0,
+	writingwordsStarttime : 80.0,
+	writemusicStarttime : 90.0,
 	list:[
 		{
 			src: "mp3/赵偲旖 - 笑话.mp3",
