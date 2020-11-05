@@ -269,15 +269,15 @@
                 <button class="layui-btn site-demo-active" data-type="loading">loading</button>
             </div>
         </div>
-        <div class="center prize"></div>
-        <div class="center composition listTitle"></div>
-        <div class="center writingwords listTitle"></div>
-        <div class="center writemusic listTitle"></div>
+        <div class="center prize">第2届新歌奖</div>
+        <div class="center composition listTitle">最佳编曲</div>
+        <div class="center writingwords listTitle">最佳作词</div>
+        <div class="center writemusic listTitle">最佳作曲</div>
         <div class="mark compositionMark"></div>
         <div class="mark writingwordsMark"></div>
         <div class="mark writemusicMark"></div>
         <div class="center ThePress1"></div>
-        <div class="wrap center ThePress2"></div>
+        <img class="wrap center ThePress2" style="padding: 0px;"></img>
         <div class="wrap center ThePressIrc">
 			<ul id="lrclist" style="transform: translateY(250px);"><!-- 保证歌词在正中间 -->
 				
@@ -313,11 +313,15 @@
             }else if(press == 3){
                 t = settings.alltime;    
             }
+            $(".ThePress1").html(settings.list[press-1].name)
+            $(".ThePress2").attr("src", settings.list[press-1].img)
             $(".ThePress1,.ThePress2").animate({
                 opacity : 1
             });
             setTimeout(function(){
+                $(".ThePress1").html(settings.list[press-1].name + settings.list[press-1].song)
                 $(".ThePress1").animate({
+                    width : '300px',
                     top: "92px",
                     left: "220px",
                 });
@@ -330,9 +334,9 @@
                 $(".ThePressIrc").animate({
                     opacity : 1
                 });
-                $("audio").animate({
-                    opacity : 1
-                });
+                // $("audio").animate({
+                //     opacity : 1
+                // });
                 $("#audio").attr("src", settings.list[press-1].src);
                 setCurEndTimeAndPlay(settings.list[press-1].start, settings.list[press-1].end);
                 initIrc(settings.list[press-1].irc);
@@ -374,13 +378,14 @@
             setTimeout(function(){
                 $(".ThePress1").animate({
                     top: "50%",
-                    left: "50%"
+                    left: "50%",
+                    width: "120px"
                 });
                 $(".ThePress2").animate({
                     top:"50%",
                     left: "50%",
                     width: "120px",
-                    height: "70px"
+                    height: "120px"
                 }); 
                 $(".ThePressIrc").animate({
                     opacity : 0
@@ -396,31 +401,37 @@
                     $(".listTitle").addClass("musicToCenter-animation");
                     setTimeout(function(){
                         $(".composition").animate({
-                            left : ($(window).width() * (settings.compositionStarttime / settings.alltime)) + 60 - 23 + "px",
+                            left : ($(window).width() * (settings.compositionStarttime / settings.alltime)) + 60 - 30 + "px",
                             height: "15px",
-                            width: "46px",
+                            width: "60px",
                             marginTop: "0px",
                             top: $(window).height() - 40 + "px",
+                            fontSize: '10px',
+                            lineHeight: "15px"
                         });
                         $(".compositionMark").animate({
                             left : ($(window).width() * (settings.compositionStarttime / settings.alltime)) - 2 + "px"
                         });
                         $(".writingwords").animate({
-                            left : ($(window).width() * (settings.writingwordsStarttime / settings.alltime)) + 60 - 23 + "px",
+                            left : ($(window).width() * (settings.writingwordsStarttime / settings.alltime)) + 60 - 30 + "px",
                             height: "15px",
-                            width: "46px",
+                            width: "60px",
                             marginTop: "0px",
                             top: $(window).height() - 40 + "px",
+                            fontSize: '10px',
+                            lineHeight: "15px"
                         });
                         $(".writingwordsMark").animate({
                             left : ($(window).width() * (settings.writingwordsStarttime / settings.alltime)) - 2 + "px"
                         });
                         $(".writemusic").animate({
-                            left : ($(window).width() * (settings.writemusicStarttime / settings.alltime)) + 60 - 23 + "px",
+                            left : ($(window).width() * (settings.writemusicStarttime / settings.alltime)) + 60 - 30 + "px",
                             height: "15px",
-                            width: "46px",
+                            width: "60px",
                             marginTop: "0px",
                             top: $(window).height() - 40 + "px",
+                            fontSize: '10px',
+                            lineHeight: "15px"
                         });
                         $(".writemusicMark").animate({
                             left : ($(window).width() * (settings.writemusicStarttime / settings.alltime)) - 2 + "px"

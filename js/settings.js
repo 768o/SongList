@@ -7,8 +7,11 @@ var settings = {
 		{
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 15,
-			end: 60,
-			rhythm: 1000,
+			name: "最佳编曲",
+			song: "  《笑话》- 赵偲旖",
+			end: 100,
+			img: "data/20201108/1.jpg",
+			rhythm: 300,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
 				,"00:01.450":"词：赵偲旖"
@@ -37,7 +40,10 @@ var settings = {
 		{
 			src: "mp3/赵偲旖 - 笑话.mp3",
 			start: 12,
+			name: "最佳作词",
+			song: "  《笑话》- 赵偲旖",
 			end: 92,
+			img: "data/20201108/1.jpg",
 			rhythm: 200,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
@@ -65,9 +71,12 @@ var settings = {
 			}
 		},
 		{
+			name: "最佳作曲",
 			src: "mp3/赵偲旖 - 笑话.mp3",
+			song: "  《笑话》- 赵偲旖",
 			start: 5,
 			end: 60,
+			img: "data/20201108/1.jpg",
 			rhythm: 400,
 			irc: {
 				"00:00.000":"笑话 - 赵偲旖"
